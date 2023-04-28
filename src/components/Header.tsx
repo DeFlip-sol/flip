@@ -2,7 +2,7 @@ import { useGamba } from 'gamba'
 import React from 'react'
 import styled from 'styled-components'
 import { getConfig } from '../config'
-import { ASSET_LOGO } from '../constants'
+import { ASSET_LOGO, TWITTER_LOGO } from '../constants'
 
 const Wrapper = styled.div`
   position: fixed;
@@ -29,6 +29,17 @@ const Link = styled.a`
   }
 `
 
+const TwitterLink = styled.a`
+  text-decoration: unset;
+  color: unset;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  & > img {
+    margin-right: 1em;
+  }
+`
+
 const Title = styled.h1`
   font-size: 18px;
   font-weight: bold;
@@ -41,7 +52,7 @@ const Subtitle = styled.h2`
 `
 
 export function Header() {
-  const { appLink } = getConfig()
+  const { appLink, twitterLink } = getConfig()
   const gamba = useGamba()
 
   return (
@@ -53,6 +64,9 @@ export function Header() {
           <Subtitle>Powered by Gamba</Subtitle>
         </div>
       </Link>
+      <TwitterLink target="_blank" href={twitterLink ?? '#'}>
+        <img width="25px" src={TWITTER_LOGO} />
+      </TwitterLink>
     </Wrapper>
   )
 }
